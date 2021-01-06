@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+	<Resource name="jdbc/mssql" auth="Container"
+	type="javax.sql.DataSource"
+	driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+	url="jdbc:sqlserver://127.0.0.1:1433; DatabaseName=JspSNS"
+	username="User" password="1"
+	maxActive="5" maxIdl="3" maxWait="-1" />
+
+</Context>
