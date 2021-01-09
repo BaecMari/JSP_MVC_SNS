@@ -10,7 +10,7 @@
 		<li><a href="javascript:newuser()">New User</a></li>
 		
 		<!-- 전체 메시지 보기 -->
-		<li><a href="#">메시지</a></li>
+		<li><a href="../Controller/sns_control.jsp?action=getall">메시지</a></li>
 		
 		<!-- 게시판 목록 보기 -->
 		<li><a href="../Controller/bbs_control.jsp?action=list">게시판</a></li>

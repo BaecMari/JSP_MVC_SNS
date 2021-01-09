@@ -70,29 +70,37 @@ CDN (Contents Delivery Network)을 이용 외부에서 파일 참조 -->
 			<section id="content">
 				<b>내 소식 업데이트</b>
 				<!-- 임시로 형식을 보기 위해 만들어 놓은 것, 추후 코드 변경 -->
-				<form class="m_form" method="post">
-					<input type="text" name="message">
-
-					<button class="submit" type="submit">등록</button>
+				<form class="m_form" method="post" action="../Controller/sns_control.jsp">
+					<input type="hidden" name="uid" value="${uid }">
+					<input type="hidden" name="action" value="newmsg">
+					<sns:msgwrite type="message"></sns:msgwrite>
 				</form>
-
 				<br> <br>
 				<h3>친구들의 최신 소식</h3>
 				<div id="accordion">
-					<!-- UI 테스트를 위한 용도로 만든 샘플 -->
-					<h3>김프리 :: 2013.7.8:14:00 작성 [좋아요 6 | 댓글 4]</h3>
-					<div>
-						<p>어제는 나홀로 영화를 보았습니다. ^^ 사람들이 이상하다고 해도 나는 즐거워요..</p>
-						<p>[삭제] 좋아요 / 2013.7.8:14:00</p>
-						<ul class="reply">
-							<li>홍길동 :: 저랑 똑같네요.. - 2013.07.08 <a href="">삭제</a></li>
-							<li>홍길동 :: 저랑 똑같네요.. - 2013.07.08 <a href="">삭제</a></li>
-							<li>홍길동 :: 저랑 똑같네요.. - 2013.07.08 <a href="">삭제</a></li>
-						</ul>
-						<form action="" class="">
-							댓글달기<input type="text" name="" size="60">
-						</form>
-					</div>
+					<!-- 메시지 목록을 읽어옴. -->
+					<c:forEach var="msgs" items="${datas }" varStatus="mcnt">
+						<c:set var="m" value="${msgs.message }"></c:set>
+						<h3>[${m.uid }]${m.uploaddate } :: [좋아요${m.favoritecnt } | 댓글 수${m.replycnt }]</h3>
+						<div>
+							<!-- 메시지 출력 -->
+							<p>${m.msg }
+							<!-- 삭제 좋아요 버튼 -->
+							<!-- msgid : 메시지 번호, msguid : 작성자, curmsg : 현재 메시지의 index -->
+							<sns:msgmenu msgid="${m.mid }" msguid="${m.uid }" curmsg="${mcnt.index }"></sns:msgmenu></p>
+							
+							<!-- 댓글 목록 출력 -->
+							<ul class="reply">
+								<c:forEach var="r" items="${msgs.rlist }">
+									<!-- 댓글 출력 후 작성자인 경우 삭제 버튼 추가 -->
+									<!-- rid : 댓글 번호, ruid : 작성자, curmsg : 현재 메시지의 index -->
+									<li>${r.uid } :: ${r.reply } - ${r.uploaddate }
+										<sns:rplmenu rplid="${r.rid }" rpluid="${r.uid }" curmsg="${mcnt.index }"></sns:rplmenu>
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
+					</c:forEach>
 				</div>
 			</section>
 			<!-- end of section content -->

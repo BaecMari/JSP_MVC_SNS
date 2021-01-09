@@ -33,7 +33,10 @@
 			session.setAttribute("uid", mdo.getUid());
 			
 			//추후 링크 변경 예정
-			response.sendRedirect("../default.jsp");
+			//response.sendRedirect("../default.jsp");
+			
+			//로그인 성공하면 로그인 호출 페이지로 이동
+			response.sendRedirect(request.getHeader("referer"));
 		} else {
 			out.println("<script>alert('아이디나 비밀번호가 틀렸습니다!!');"
 			+ "history.go(-1);</script>");
