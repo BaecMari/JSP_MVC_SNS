@@ -17,8 +17,8 @@
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	
-	/*//데이터베이스 연결관련 정보 -- > 커넥션 풀 안사용
-	String jdbc_drvier = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+	//데이터베이스 연결관련 정보 -- > 커넥션 풀 안사용
+	/*String jdbc_drvier = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	String jdbc_url = "jdbc:sqlserver://127.0.0.1; DatabaseName=JspSNS";
 	String jdbc_user = "User";
 	String jdbc_paswd = "1";
